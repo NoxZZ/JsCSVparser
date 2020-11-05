@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<h3>A demonstration of how to access a File Upload Button</h3>
+
+<input type="file" id="myFile" onchange="readFile(this)"> 
+</body>
+</html>
+
+<script>
+
+function readFile(input) {
+  let file = input.files[0];
+
+  let reader = new FileReader();
+
+  reader.readAsText(file);
+
+  reader.onload = function() {
+    arr = reader.result.replace(/\n/g, ',').replace(/\"/g,'');
+
+    arr = arr.split(',');
+
+    //OPEN 
+
+    var Open = 0;
+    var OpenCmt = 0;
+    var OpenCmtHigh = 0;
+    var OpenCmtLow = 0;
+    var OpenCmtMedium = 0;
+    //open progress
+    var OpenProg = 0;
+    var OpenProgHigh = 0;
+    var OpenProgLow = 0;
+    var OpenProgMedium = 0;
+    //open validation
+    var OpenVal = 0;
+    var OpenValHigh = 0;
+    var OpenValLow = 0;
+    var OpenValMedium = 0;
+
+    //RESOLVED
+
+    var Resolved = 0;
+    var ResolvedCmt = 0;
+    var ResolvedCmtHigh = 0;
+    var ResolvedCmtLow = 0;
+    var ResolvedCmtMedium = 0;
+    var ResolvedVal = 0;
+    var ResolvedProg = 0;
+    var ResolvedValMedium = 0;
+    var ResolvedValLow = 0;
+    var ResolvedValHigh = 0;
+    var ResolvedProgLow = 0;
+    var ResolvedProgHigh = 0;
+    var ResolvedProgMedium = 0;
+
+    //blocked 
+    var blocked = 0;
+
+    var i,j;
+
+    console.log(arr);
+
+    for( i=0;i<arr.length;i++){
+
+      //blocked - 
+      //console.log(i);
+
+
+      //Open
+        if(arr[i] == "Open" || arr[i] == "open"){
+          Open++;
+          //Open Comment 
+          if(arr[i+1] == "Comment" || arr[i+1] == "comment"){
+              OpenCmt++;
+              for(j = i+25; j<i+50;j++){
+
+                if(arr[j] == "High" || arr[j] == "high"){
+                  OpenCmtHigh++;
+                }
+                else if(arr[j] == "Low" || arr[j] == "low"){
+                    OpenCmtLow++;                      
+                  }
+                  else if(arr[j] == "Medium" || arr[j] == "medium"){
+                    OpenCmtMedium++;                      
+                  }    
+              }
+            }
+            //Open In progress
+            else if(arr[i+1] == "In Progress" || arr[i+1] == "In progress"){
+              OpenProg++;
+                for(j = i+25; j<i+50;j++){
+
+                if(arr[j] == "High" || arr[j] == "high"){
+                  OpenProgHigh++;
+                }
+                else if(arr[j] == "Low" || arr[j] == "low"){
+                    OpenProgLow++;                      
+                  }
+                  else if(arr[j] == "Medium" || arr[j] == "medium"){
+                    OpenProgMedium++;                      
+                  }    
+              }
+            }
+            //Open Validation
+           else if(arr[i+1] == "Validation" || arr[i+1] == "Validation"){
+            OpenVal++;
+                for(j = i+25; j<i+50;j++){
+
+                if(arr[j] == "High" || arr[j] == "high"){
+                  OpenValHigh++;
+                }
+                else if(arr[j] == "Low" || arr[j] == "low"){
+                    OpenValLow++;                      
+                  }
+                  else if(arr[j] == "Medium" || arr[j] == "medium"){
+                    OpenValMedium++;                      
+                  }    
+              }
+           } 
+      } 
+      //RESOLVED CODE STARTS HERE ---->  
+      else if(arr[i] == "Resolved" || arr[i] == "resolved"){
+              Resolved++;
+
+              if(arr[i+1] == "Comment" || arr[i+1] == "comment"){
+              ResolvedCmt++;
+              for(j = i+25; j<i+50;j++){
+                
+                if(arr[j] == "High" || arr[j] == "high"){
+                  ResolvedCmtHigh++;
+                }
+                else if(arr[j] == "Low" || arr[j] == "low"){
+                    ResolvedCmtLow++;                      
+                  }
+                  else if(arr[j] == "Medium" || arr[j] == "medium"){
+                    ResolvedCmtMedium++;                      
+                  }    
+              }
+            }
+            //Open In progress
+            else if(arr[i+1] == "In Progress" || arr[i+1] == "In progress"){
+              ResolvedProg++;
+                for(j = i+25; j<i+50;j++){
+
+                if(arr[j] == "High" || arr[j] == "high"){
+                  ResolvedProgHigh++;
+                }
+                else if(arr[j] == "Low" || arr[j] == "low"){
+                    ResolvedProgLow++;                      
+                  }
+                  else if(arr[j] == "Medium" || arr[j] == "medium"){
+                    ResolvedProgMedium++;                      
+                  }    
+              }
+            }
+            //Open Validation
+           else if(arr[i+1] == "Validation" || arr[i+1] == "validation"){
+            ResolvedVal++;
+                for(j = i+25; j<i+50;j++){
+
+                if(arr[j] == "High" || arr[j] == "high"){
+                  ResolvedValHigh++;
+                }
+                else if(arr[j] == "Low" || arr[j] == "low"){
+                    ResolvedValLow++;                      
+                  }
+                  else if(arr[j] == "Medium" || arr[j] == "medium"){
+                    ResolvedValMedium++;                      
+                  }    
+              }
+           }
+      }       
+    }    
+    console.log(Open,OpenCmt,OpenCmtHigh,OpenCmtLow,OpenCmtMedium,(OpenCmt-(OpenCmtHigh+OpenCmtMedium+OpenCmtLow)),OpenProg,OpenProgLow,OpenProgMedium,OpenProgHigh,OpenVal,OpenValMedium,OpenValHigh,OpenValLow);
+    console.log(Resolved,ResolvedVal,ResolvedProg,ResolvedCmt,ResolvedValMedium,ResolvedValLow,ResolvedValHigh,ResolvedProgMedium,ResolvedProgLow,ResolvedProgHigh);
+      
+
+    const rows = [
+          ['BPM60','total tasks'],
+          ['Open',Open]
+      ]
+
+
+    let csvContent = "data:text/csv;charset=utf-8," 
+    + rows.map(e => e.join(",")).join("\n");
+
+    var encodedUri = encodeURI(csvContent);
+    window.open(encodedUri);
+
+  };
+
+  reader.onerror = function() {
+    console.log(reader.error);
+  };
+
+}
+
+
+
+
+
+
+</script>
+</body> 
+</html>
